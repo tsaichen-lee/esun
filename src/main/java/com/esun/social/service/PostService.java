@@ -24,7 +24,6 @@ public class PostService {
     public Post updatePost(Long id, Post updatedPost) {
         Post existing = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post not found"));
-
         existing.setContent(updatedPost.getContent());
         existing.setImage(updatedPost.getImage());
         return postRepository.save(existing);
@@ -43,6 +42,4 @@ public class PostService {
         post.setCommentCount(post.getCommentCount() + 1);
         postRepository.save(post);
     }
-
-
 }

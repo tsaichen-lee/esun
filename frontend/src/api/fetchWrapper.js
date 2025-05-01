@@ -1,13 +1,17 @@
-const BASE_URL = '/api';
-
-export async function fetchWithAuth(path, options = {}) {
+export async function fetchWithAuth(url, options = {}) {
     const token = localStorage.getItem('token');
 
     const headers = {
         'Content-Type': 'application/json',
-        ...options.headers,
-        Authorization: token ? `Bearer ${token}` : ''
+        ...(options.headers || {})
     };
 
-    return fetch(`${BASE_URL}${path}`, { ...options, headers });
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return fetch(url, {
+        ...options,
+        headers
+    });
 }

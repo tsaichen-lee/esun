@@ -1,5 +1,6 @@
 package com.esun.social.controller;
 
+import com.esun.social.dto.CommentResponseDTO;
 import com.esun.social.entity.Comment;
 import com.esun.social.entity.User;
 import com.esun.social.service.CommentService;
@@ -7,7 +8,6 @@ import com.esun.social.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 
 
 import java.util.List;
@@ -28,10 +28,9 @@ public class CommentController {
         return commentService.addComment(comment);
     }
 
-    // 根據貼文查留言
     @GetMapping("/post/{postId}")
-    public List<Comment> getCommentsByPost(@PathVariable Long postId) {
-        return commentService.getCommentsByPostId(postId);
+    public List<CommentResponseDTO> getCommentsByPost(@PathVariable Long postId) {
+        return commentService.getCommentsWithUsernames(postId);
     }
 
     // 使用 @Transactional 的留言操作（新增留言 + 更新留言數）
@@ -41,17 +40,6 @@ public class CommentController {
         User user = userService.findByPhone(phone);
         comment.setUserId(user.getId());
         return commentService.addCommentWithCount(comment);
-    }
-
-    @PutMapping("/{id}")
-    public Comment updateComment(@PathVariable Long id, @RequestBody Comment updated) {
-        return commentService.updateComment(id, updated.getContent());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteComment(@PathVariable Long id) {
-        commentService.deleteComment(id);
-        return ResponseEntity.ok("Comment deleted");
     }
 
 }

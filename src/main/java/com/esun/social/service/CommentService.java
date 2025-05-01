@@ -1,5 +1,6 @@
 package com.esun.social.service;
 
+import com.esun.social.dto.CommentResponseDTO;
 import com.esun.social.entity.Comment;
 import com.esun.social.repository.CommentRepository;
 import jakarta.transaction.Transactional;
@@ -22,9 +23,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    // 根據貼文 ID 查留言
-    public List<Comment> getCommentsByPostId(Long postId) {
-        return commentRepository.findByPostId(postId);
+    public List<CommentResponseDTO> getCommentsWithUsernames(Long postId) {
+        return commentRepository.findCommentsWithUsernameByPostId(postId);
     }
 
     // 加留言 + 更新貼文留言數
@@ -33,20 +33,6 @@ public class CommentService {
         Comment saved = commentRepository.save(comment);
         postService.incrementCommentCount(comment.getPostId());
         return saved;
-    }
-
-    public Comment updateComment(Long id, String newContent) {
-        Comment comment = commentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Comment not found"));
-        comment.setContent(newContent);
-        return commentRepository.save(comment);
-    }
-
-    public void deleteComment(Long id) {
-        if (!commentRepository.existsById(id)) {
-            throw new RuntimeException("Comment not found");
-        }
-        commentRepository.deleteById(id);
     }
 
 }

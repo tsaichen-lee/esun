@@ -41,7 +41,7 @@ public class UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return jwtUtil.generateToken(user.getPhone());
+        return jwtUtil.generateToken(user.getPhone(), user.getId());
     }
 
     public User findByPhone(String phone) {

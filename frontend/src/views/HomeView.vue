@@ -1,8 +1,6 @@
 <template>
   <div class="container">
     <!-- 僅登入後才顯示 -->
-    <PostForm v-if="isLoggedIn" />
-
     <PostList />
   </div>
 </template>
