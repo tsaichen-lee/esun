@@ -1,0 +1,101 @@
+@import './base.css';
+
+/* 全站容器，讓內容全螢幕但有邊距 */
+#app {
+  margin: 0;
+  padding: 2rem 4vw;
+  font-weight: normal;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f5f7;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* 連結樣式 */
+a {
+  text-decoration: none;
+  color: #a3b18a;
+  transition: 0.3s;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+a:hover {
+  background-color: rgba(163, 177, 138, 0.2);
+}
+
+/* 表單元件 */
+input,
+textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #a3b18a;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #8f9e7b;
+}
+
+/* 發文與留言區塊 */
+.post {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+.comment {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #c8c9cc;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* 導覽列 */
+nav {
+  background-color: #e7ecef;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-weight: 500;
+  color: #4a5759;
+}
+
+nav a:hover {
+  background-color: #d8e3dc;
+}
+
+/* 響應式處理 */
+@media (min-width: 1024px) {
+  #app {
+    padding: 3rem 6vw;
+  }
+}
